@@ -20,6 +20,8 @@ module.exports = function (addr, opts = {}) {
   stream.destroy = () => {
     if (socket.terminate) {
       socket.terminate()
+    } else {
+      socket.close()
     }
   }
   stream.socket = socket
