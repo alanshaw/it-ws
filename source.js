@@ -1,5 +1,5 @@
-const { Buffer } = require('buffer')
 const { EventIterator } = require('event-iterator')
+const { Buffer } = require('buffer')
 
 // copied from github.com/feross/buffer
 // Some ArrayBuffers are not passing the instanceof check, so we need to do a bit more work :(
@@ -9,7 +9,7 @@ function isArrayBuffer (obj) {
       typeof obj.byteLength === 'number')
 }
 
-module.exports = socket => {
+module.exports = (socket, options = {}) => {
   const removeListener = socket.removeEventListener || socket.removeListener
 
   const source = (async function * () {
@@ -32,25 +32,32 @@ module.exports = socket => {
       yield isArrayBuffer(data) ? Buffer.from(data) : data
     }
   })()
-
   let connected = socket.readyState === 1
   let connError
 
-  socket.addEventListener('open', () => {
-    connected = true
-    connError = null
-  })
+  // cloudflare worker websocket interface does not support those events
+  // so we don't need to register them
+  if (!options.cloudflareWorker) {
+    socket.addEventListener('open', () => {
+      connected = true
+      connError = null
+    })
 
-  socket.addEventListener('close', () => {
-    connected = false
-    connError = null
-  })
+    socket.addEventListener('close', () => {
+      connected = false
+      connError = null
+    })
 
-  socket.addEventListener('error', err => {
-    if (!connected) connError = err
-  })
+    socket.addEventListener('error', err => {
+      if (!connected) connError = err
+    })
+  }
 
   source.connected = () => new Promise((resolve, reject) => {
+    // if in cloudflare worker the ws will be connected when this is created
+    if (options.cloudflareWorker) {
+      return resolve()
+    }
     if (connected) return resolve()
     if (connError) return reject(connError)
 
