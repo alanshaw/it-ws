@@ -27,7 +27,7 @@
   "dependencies": {
     "buffer": "6.0.3",
     "event-iterator": "^2.0.0",
-    "iso-url": "../iso-url",
+    "iso-url": "^1.2.1",
     "ws": "^7.3.1"
   },
   "devDependencies": {
