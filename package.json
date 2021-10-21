@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/alanshaw/it-ws",
   "dependencies": {
-    "buffer": "^6.0.3",
+    "buffer": "6.0.3",
     "event-iterator": "^2.0.0",
-    "iso-url": "^1.1.2",
+    "iso-url": "^1.2.1",
     "ws": "^7.3.1"
   },
   "devDependencies": {

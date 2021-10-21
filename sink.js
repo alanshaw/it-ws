@@ -6,11 +6,15 @@ module.exports = (socket, options) => {
 
   return async source => {
     for await (const data of source) {
-      try {
-        await ready(socket)
-      } catch (err) {
-        if (err.message === 'socket closed') break
-        throw err
+      // If we're in a cloudflare worker, the websocket interface will be ready
+      // before it's instanciated, so we can send data directly
+      if (!options.cloudflareWorker) {
+        try {
+          await ready(socket)
+        } catch (err) {
+          if (err.message === 'socket closed') break
+          throw err
+        }
       }
 
       socket.send(data)
