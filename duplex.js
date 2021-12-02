@@ -1,7 +1,7 @@
 const source = require('./source')
 const sink = require('./sink')
 
-module.exports = (socket, options) => {
+module.exports = (socket, options, req) => {
   options = options || {}
 
   if (options.binaryType) {
@@ -13,7 +13,28 @@ module.exports = (socket, options) => {
   const duplex = {
     sink: sink(socket, options),
     source: source(socket, options),
-    connected: () => duplex.source.connected()
+
+    connected: () => duplex.source.connected(),
+    close: () => new Promise((resolve) => {
+      socket.addEventListener('close', resolve)
+      socket.close()
+    }),
+    destroy: () => {
+      if (socket.terminate) {
+        socket.terminate()
+      } else {
+        socket.close()
+      }
+    },
+
+    socket: socket
+  }
+
+  if (req) {
+    duplex.remoteAddress = req.socket.remoteAddress
+    duplex.remotePort = req.socket.remotePort
+  } else {
+    duplex.remoteAddress = socket.url
   }
 
   return duplex

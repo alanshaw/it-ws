@@ -15,6 +15,7 @@ tape('simple echo server', async function (t) {
   await server.listen(5678)
 
   const stream = WS.connect('ws://localhost:5678')
+  t.equal(stream.remoteAddress, 'ws://localhost:5678/');
 
   const ary = await pipe(
     [1, 2, 3],
