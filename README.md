@@ -145,10 +145,13 @@ these modules are used internally, to wrap a websocket.
 you probably won't need to touch these,
 but they are documented anyway.
 
-### `require('pull-ws/duplex')(socket, opts?)`
+### `require('pull-ws/duplex')(socket, opts?, req?)`
 
 turn a websocket into a duplex pull stream.
 If provided, `opts` is passed to `pws.sink(socket, opts)`.
+Optionally pass the incoming request as `req` in Node.js to
+populate the stream's `remoteAddress` and `remotePort` from
+the request's socket.
 
 Websockets do not support half open mode.
 [see allowHalfOpen option in net module](
@@ -158,10 +161,6 @@ If you have a protocol that assumes halfOpen connections, but are using
 a networking protocol like websockets that does not support it, I suggest
 using [pull-goodbye](https://github.com/dominictarr/pull-goodbye) with your
 protocol.
-
-The duplex stream will also contain a copy of the properties from
-the http request that became the websocket. they are `method`, `url`,
-`headers` and `upgrade`.
 
 also exposed at: `var duplex = require('pull-ws')`
 

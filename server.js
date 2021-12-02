@@ -39,19 +39,11 @@ module.exports = !WebSocket.Server ? null : function (opts, onConnection) {
   proxy(server, 'close')
 
   wsServer.on('connection', function (socket, req) {
-    var stream = ws(socket)
+    var stream = ws(socket, {}, req)
     const addr = wsServer.address()
 
     stream.localAddress = addr.address
     stream.localPort = addr.port
-    stream.remoteAddress = req.socket.remoteAddress
-    stream.remotePort = req.socket.remotePort
-    stream.close = () => new Promise((resolve) => {
-      socket.addEventListener('close', resolve)
-      socket.close()
-    })
-    stream.destroy = () => socket.terminate()
-    stream.socket = socket
 
     emitter.emit('connection', stream, req)
   })

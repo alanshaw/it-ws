@@ -11,22 +11,7 @@ module.exports = function (addr, opts = {}) {
   const url = wsurl(addr, location)
   const socket = new WebSocket(url, opts.websocket)
 
-  const stream = duplex(socket, opts)
-  stream.remoteAddress = url
-  stream.close = () => new Promise((resolve, reject) => {
-    socket.addEventListener('close', resolve)
-    socket.close()
-  })
-  stream.destroy = () => {
-    if (socket.terminate) {
-      socket.terminate()
-    } else {
-      socket.close()
-    }
-  }
-  stream.socket = socket
-
-  return stream
+  return duplex(socket, opts)
 }
 
 module.exports.connect = module.exports
