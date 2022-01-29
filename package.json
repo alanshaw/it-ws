@@ -4,13 +4,13 @@
   "description": "Simple async iterables for websocket client connections",
   "author": "Alan Shaw",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/achingbrain/it-ws#readme",
+  "homepage": "https://github.com/alanshaw/it-ws#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/achingbrain/it-ws.git"
+    "url": "git+https://github.com/alanshaw/it-ws.git"
   },
   "bugs": {
-    "url": "https://github.com/achingbrain/it-ws/issues"
+    "url": "https://github.com/alanshaw/it-ws/issues"
   },
   "keywords": [
     "async",
