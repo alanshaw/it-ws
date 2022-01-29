@@ -1,5 +1,5 @@
 import duplex, { DuplexWebSocket } from './duplex.js'
-import * as WS from 'ws'
+import { WebSocketServer as WSServer } from 'ws'
 import http from 'http'
 import https from 'https'
 import { EventEmitter } from 'events'
@@ -69,7 +69,7 @@ export function createServer (opts?: ServerOptions): WebSocketServer {
     })
   }
 
-  const wsServer = new WS.WebSocketServer({
+  const wsServer = new WSServer({
     server: server,
     perMessageDeflate: false,
     verifyClient: opts.verifyClient
@@ -83,12 +83,12 @@ export function createServer (opts?: ServerOptions): WebSocketServer {
     const addr = wsServer.address()
 
     if (typeof addr === 'string') {
-      this.emit('error', new Error('Cannot listen on unix sockets'))
+      wsServer.emit('error', new Error('Cannot listen on unix sockets'))
       return
     }
 
     if (req.socket.remoteAddress == null || req.socket.remotePort == null) {
-      this.emit('error', new Error('Remote connection did not have address and/or port'))
+      wsServer.emit('error', new Error('Remote connection did not have address and/or port'))
       return
     }
 
