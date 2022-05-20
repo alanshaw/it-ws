@@ -16,8 +16,8 @@ describe('simple echo server', () => {
 
   it('echoes', async () => {
     const server = WS.createServer({
-      onConnection: async stream => {
-        await pipe(stream, stream)
+      onConnection: stream => {
+        void pipe(stream, stream)
       }
     })
 
