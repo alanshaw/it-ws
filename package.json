@@ -50,6 +50,7 @@
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",
+      "browser": "./dist/src/index.browser.js",
       "import": "./dist/src/index.js"
     },
     "./client": {
