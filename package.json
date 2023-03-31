@@ -195,7 +195,7 @@
     "it-goodbye": "^4.0.0",
     "it-map": "^2.0.0",
     "it-ndjson": "^1.0.0",
-    "it-pipe": "^2.0.3",
+    "it-pipe": "^3.0.0",
     "p-defer": "^4.0.0",
     "wherearewe": "^2.0.1",
     "wsurl": "^1.0.0"
