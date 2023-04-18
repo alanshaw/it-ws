@@ -1,0 +1,217 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>it-ws - v6.0.0</title><meta name="description" content="Documentation for it-ws - v6.0.0"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">it-ws - v6.0.0</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<h2>it-ws - v6.0.0</h2></div>
+<div class="tsd-panel tsd-typography">
+<a href="#it-ws-" id="it-ws-" style="color: inherit; text-decoration: none;">
+  <h1>it-ws <!-- omit in toc --></h1>
+</a>
+<p><a href="https://codecov.io/gh/alanshaw/it-ws"><img src="https://img.shields.io/codecov/c/github/alanshaw/it-ws.svg?style=flat-square" alt="codecov"></a>
+<a href="https://github.com/alanshaw/it-ws/actions/workflows/js-test-and-release.yml?query=branch%3Amaster"><img src="https://img.shields.io/github/actions/workflow/status/alanshaw/it-ws/js-test-and-release.yml?branch=master&style=flat-square" alt="CI"></a></p>
+<blockquote>
+<p>Simple async iterables for websocket client connections</p>
+</blockquote>
+
+<a href="#table-of-contents-" id="table-of-contents-" style="color: inherit; text-decoration: none;">
+  <h2>Table of contents <!-- omit in toc --></h2>
+</a>
+<ul>
+<li><a href="#install">Install</a><ul>
+<li><a href="#browser-script-tag">Browser <code>&lt;script&gt;</code> tag</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#example---client">Example - client</a></li>
+<li><a href="#example---server">Example - server</a></li>
+</ul>
+</li>
+<li><a href="#api">API</a><ul>
+<li><a href="#import--connect--from-it-wsclient"><code>import { connect } from &#39;it-ws/client&#39;</code></a></li>
+<li><a href="#import--createserver--from-it-wsserver"><code>import { createServer } from &#39;it-ws/server&#39;</code></a><ul>
+<li><a href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#use-with-an-http-server">use with an http server</a><ul>
+<li><a href="#core-websocket-wrapping-functions">core, websocket wrapping functions</a></li>
+<li><a href="#import-duplex-from-it-wsduplex"><code>import duplex from &#39;it-ws/duplex&#39;</code></a></li>
+<li><a href="#import-sink-from-it-wssink"><code>import sink from &#39;it-ws/sink&#39;</code></a></li>
+<li><a href="#import-source-from-it-wssource"><code>import source from &#39;it-ws/source&#39;</code></a></li>
+</ul>
+</li>
+<li><a href="#license">License</a></li>
+<li><a href="#contribution">Contribution</a></li>
+</ul>
+
+<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+  <h2>Install</h2>
+</a>
+<pre><code class="language-console"><span class="hl-0">$ </span><span class="hl-1">npm</span><span class="hl-0"> </span><span class="hl-1">i</span><span class="hl-0"> </span><span class="hl-1">it-ws</span>
+</code></pre>
+
+<a href="#browser-ltscriptgt-tag" id="browser-ltscriptgt-tag" style="color: inherit; text-decoration: none;">
+  <h3>Browser <code>&lt;script&gt;</code> tag</h3>
+</a>
+<p>Loading this module through a script tag will make it&#39;s exports available as <code>ItWs</code> in the global namespace.</p>
+<pre><code class="language-html"><span class="hl-2">&lt;</span><span class="hl-3">script</span><span class="hl-4"> </span><span class="hl-5">src</span><span class="hl-4">=</span><span class="hl-6">&quot;https://unpkg.com/it-ws/dist/index.min.js&quot;</span><span class="hl-2">&gt;&lt;/</span><span class="hl-3">script</span><span class="hl-2">&gt;</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+
+<a href="#example---client" id="example---client" style="color: inherit; text-decoration: none;">
+  <h3>Example - client</h3>
+</a>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">connect</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/client&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">pipe</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-pipe&#39;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">stream</span><span class="hl-0"> = </span><span class="hl-11">connect</span><span class="hl-0">(</span><span class="hl-10">WS_URL</span><span class="hl-0">)</span><br/><br/><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-8">stream</span><span class="hl-0">.</span><span class="hl-11">connected</span><span class="hl-0">() </span><span class="hl-12">// Wait for websocket to be connected (optional)</span><br/><br/><span class="hl-11">pipe</span><span class="hl-0">(</span><span class="hl-8">source</span><span class="hl-0">, </span><span class="hl-8">stream</span><span class="hl-0">, </span><span class="hl-8">sink</span><span class="hl-0">)</span>
+</code></pre>
+
+<a href="#example---server" id="example---server" style="color: inherit; text-decoration: none;">
+  <h3>Example - server</h3>
+</a>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">createServer</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/server&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">pipe</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-pipe&#39;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">server</span><span class="hl-0"> = </span><span class="hl-11">createServer</span><span class="hl-0">(</span><span class="hl-8">stream</span><span class="hl-0"> </span><span class="hl-9">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-12">//pipe the stream somewhere.</span><br/><span class="hl-0">  </span><span class="hl-12">//eg, echo server</span><br/><span class="hl-0">  </span><span class="hl-11">pipe</span><span class="hl-0">(</span><span class="hl-8">stream</span><span class="hl-0">, </span><span class="hl-8">stream</span><span class="hl-0">)</span><br/><span class="hl-0">})</span><br/><br/><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-8">server</span><span class="hl-0">.</span><span class="hl-11">listen</span><span class="hl-0">(</span><span class="hl-10">PORT</span><span class="hl-0">)</span>
+</code></pre>
+
+<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+  <h2>API</h2>
+</a>
+
+<a href="#import--connect--from-39it-wsclient39" id="import--connect--from-39it-wsclient39" style="color: inherit; text-decoration: none;">
+  <h3><code>import { connect } from &#39;it-ws/client&#39;</code></h3>
+</a>
+<p><code>connect(url, { binary: boolean })</code></p>
+<p>Create a websocket client connection. Set <code>binary: true</code> to get a stream of arrayBuffers (on the browser). Defaults to true on node, but to strings on the browser. This may cause a problems if your application assumes binary.</p>
+<p>For adding options to the WebSocket instance, as <a href="https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketaddress-protocols-options">websockets/ws/blob/master/doc/ws.md#new-websocketaddress-protocols-options</a>, you can provide an object with the <code>websocket</code> property into the connect options.</p>
+<pre><code class="language-js"><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">stream</span><span class="hl-0"> = </span><span class="hl-11">connect</span><span class="hl-0">(</span><span class="hl-8">url</span><span class="hl-0">)</span><br/><span class="hl-12">// stream is duplex and is both a `source` and `sink`.</span><br/><span class="hl-12">// See this for more information:</span><br/><span class="hl-12">// https://gist.github.com/alanshaw/591dc7dd54e4f99338a347ef568d6ee9#duplex-it</span>
+</code></pre>
+
+<a href="#import--createserver--from-39it-wsserver39" id="import--createserver--from-39it-wsserver39" style="color: inherit; text-decoration: none;">
+  <h3><code>import { createServer } from &#39;it-ws/server&#39;</code></h3>
+</a>
+<p>Create async iterable websocket servers.</p>
+<p><code>createServer(options?, onConnection)</code></p>
+<p><code>options</code> takes the same server options as <a href="https://github.com/websockets/ws/blob/master/doc/ws.md#new-wsserveroptions-callback">ws module</a></p>
+<p><code>onConnection(stream)</code> is called every time a connection is received.</p>
+
+<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+  <h4>Example</h4>
+</a>
+<p>One duplex service you may want to use this with is <a href="https://github.com/dominictarr/muxrpc">muxrpc</a></p>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">createServer</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/server&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">connect</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/client&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">pipe</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-pipe&#39;</span><br/><br/><span class="hl-11">createServer</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-11">onConnection</span><span class="hl-8">:</span><span class="hl-0"> (</span><span class="hl-8">stream</span><span class="hl-0">) </span><span class="hl-9">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-12">// pipe duplex style to your service</span><br/><span class="hl-0">    </span><span class="hl-11">pipe</span><span class="hl-0">(</span><span class="hl-8">stream</span><span class="hl-0">, </span><span class="hl-8">service</span><span class="hl-0">.</span><span class="hl-11">createStream</span><span class="hl-0">(), </span><span class="hl-8">stream</span><span class="hl-0">)</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">})</span><br/><span class="hl-0">.</span><span class="hl-11">listen</span><span class="hl-0">(</span><span class="hl-13">9999</span><span class="hl-0">)</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">stream</span><span class="hl-0"> = </span><span class="hl-8">client</span><span class="hl-0">.</span><span class="hl-11">createStream</span><span class="hl-0">()</span><br/><br/><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-11">pipe</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-8">stream</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-11">connect</span><span class="hl-0">(</span><span class="hl-1">&#39;ws://localhost:9999&#39;</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-8">stream</span><br/><span class="hl-0">)</span>
+</code></pre>
+<p>if the connection fails, the stream will throw</p>
+<pre><code class="language-js"><span class="hl-7">try</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-11">pipe</span><span class="hl-0">(</span><br/><span class="hl-0">    </span><span class="hl-8">stream</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-11">connect</span><span class="hl-0">(</span><span class="hl-1">&#39;ws://localhost:9999&#39;</span><span class="hl-0">),</span><br/><span class="hl-0">    </span><span class="hl-8">stream</span><br/><span class="hl-0">  )</span><br/><span class="hl-0">} </span><span class="hl-7">catch</span><span class="hl-0"> (</span><span class="hl-8">err</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-12">// handle err</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p>To run the server over TLS:</p>
+<pre><code class="language-js"><span class="hl-11">createServer</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-8">key:</span><span class="hl-0"> </span><span class="hl-8">fs</span><span class="hl-0">.</span><span class="hl-11">readFileSync</span><span class="hl-0">(</span><span class="hl-1">&#39;test/fixtures/keys/agent2-key.pem&#39;</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-8">cert:</span><span class="hl-0"> </span><span class="hl-8">fs</span><span class="hl-0">.</span><span class="hl-11">readFileSync</span><span class="hl-0">(</span><span class="hl-1">&#39;test/fixtures/keys/agent2-cert.pem&#39;</span><span class="hl-0">)</span><br/><span class="hl-0">  </span><span class="hl-12">// other options</span><br/><span class="hl-0">})</span><br/><span class="hl-0">.</span><span class="hl-11">listen</span><span class="hl-0">(</span><span class="hl-13">9999</span><span class="hl-0">)</span>
+</code></pre>
+<p>To add client-authentication to the server, you can set <code>verifyClient</code>.
+<a href="https://github.com/websockets/ws/blob/master/doc/ws.md#optionsverifyclient">Documentation here</a>.</p>
+<pre><code class="language-js"><span class="hl-9">function</span><span class="hl-0"> </span><span class="hl-11">verifyClient</span><span class="hl-0"> (</span><span class="hl-8">info</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-7">return</span><span class="hl-0"> </span><span class="hl-8">info</span><span class="hl-0">.</span><span class="hl-8">secure</span><span class="hl-0"> == </span><span class="hl-9">true</span><br/><span class="hl-0">}</span><br/><span class="hl-11">createServer</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-8">verifyClient:</span><span class="hl-0"> </span><span class="hl-8">verifyClient</span><br/><span class="hl-0">  </span><span class="hl-12">// other options</span><br/><span class="hl-0">})</span>
+</code></pre>
+
+<a href="#use-with-an-http-server" id="use-with-an-http-server" style="color: inherit; text-decoration: none;">
+  <h2>use with an http server</h2>
+</a>
+<p>if you have an http server that you also need to serve stuff
+over, and want to use a single port, use the <code>server</code> option.</p>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> </span><span class="hl-8">http</span><span class="hl-0"> </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;http&#39;</span><br/><br/><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">server</span><span class="hl-0"> = </span><span class="hl-8">http</span><span class="hl-0">.</span><span class="hl-11">createServer</span><span class="hl-0">(</span><span class="hl-9">function</span><span class="hl-0">(</span><span class="hl-8">req</span><span class="hl-0">, </span><span class="hl-8">res</span><span class="hl-0">){...}).</span><span class="hl-11">listen</span><span class="hl-0">(....)</span><br/><br/><span class="hl-11">createServer</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-8">server:</span><span class="hl-0"> </span><span class="hl-8">server</span><br/><span class="hl-0">  </span><span class="hl-12">// other options</span><br/><span class="hl-0">})</span>
+</code></pre>
+
+<a href="#core-websocket-wrapping-functions" id="core-websocket-wrapping-functions" style="color: inherit; text-decoration: none;">
+  <h3>core, websocket wrapping functions</h3>
+</a>
+<p>these modules are used internally, to wrap a websocket.
+you probably won&#39;t need to touch these,
+but they are documented anyway.</p>
+
+<a href="#import-duplex-from-39it-wsduplex39" id="import-duplex-from-39it-wsduplex39" style="color: inherit; text-decoration: none;">
+  <h3><code>import duplex from &#39;it-ws/duplex&#39;</code></h3>
+</a>
+<p>turn a websocket into a duplex stream.
+If provided, <code>opts</code> is passed to <code>sink(socket, opts)</code>.</p>
+<p>WebSockets do not support half open mode.
+<a href="http://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener">see allowHalfOpen option in net module</a></p>
+<p>If you have a protocol that assumes halfOpen connections, but are using
+a networking protocol like websockets that does not support it, I suggest
+using <a href="https://github.com/alanshaw/it-goodbye">it-goodbye</a> with your
+protocol.</p>
+<p>The duplex stream will also contain a copy of the properties from
+the http request that became the websocket. they are <code>method</code>, <code>url</code>,
+<code>headers</code> and <code>upgrade</code>.</p>
+<p>also exposed at: <code>import { duplex } from &#39;it-ws&#39;</code></p>
+
+<a href="#import-sink-from-39it-wssink39" id="import-sink-from-39it-wssink39" style="color: inherit; text-decoration: none;">
+  <h3><code>import sink from &#39;it-ws/sink&#39;</code></h3>
+</a>
+<p>Create a <code>Sink</code> that will write data to the <code>socket</code>.
+<code>opts</code> may be <code>{closeOnEnd: true, onClose: onClose}</code>.
+<code>onClose</code> will be called when the sink ends. If <code>closeOnEnd=false</code>
+the stream will not close, it will just stop emitting data.
+(by default <code>closeOnEnd</code> is true)</p>
+<p>If <code>opts</code> is a function, then <code>onClose = opts; opts.closeOnEnd = true</code>.</p>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> </span><span class="hl-8">sink</span><span class="hl-0"> </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/sink&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">pipe</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-pipe&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> </span><span class="hl-8">each</span><span class="hl-0"> </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-foreach&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> </span><span class="hl-8">delay</span><span class="hl-0"> </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;delay&#39;</span><br/><br/><span class="hl-12">// connect to the echo endpoint for test/server.js</span><br/><span class="hl-9">var</span><span class="hl-0"> </span><span class="hl-8">socket</span><span class="hl-0"> = </span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-11">WebSocket</span><span class="hl-0">(</span><span class="hl-1">&#39;wss://echo.websocket.org&#39;</span><span class="hl-0">)</span><br/><br/><span class="hl-12">// write values to the socket</span><br/><span class="hl-11">pipe</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-9">async</span><span class="hl-0"> </span><span class="hl-9">function</span><span class="hl-0"> </span><span class="hl-9">*</span><span class="hl-0"> () {</span><br/><span class="hl-0">    </span><span class="hl-7">while</span><span class="hl-0"> (</span><span class="hl-9">true</span><span class="hl-0">) {</span><br/><span class="hl-0">      </span><span class="hl-7">yield</span><span class="hl-0"> </span><span class="hl-1">&#39;hello @ &#39;</span><span class="hl-0"> + </span><span class="hl-8">Date</span><span class="hl-0">.</span><span class="hl-11">now</span><span class="hl-0">()</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">  }(),</span><br/><span class="hl-0">  </span><span class="hl-12">// throttle so it doesn&#39;t go nuts</span><br/><span class="hl-0">  (</span><span class="hl-8">source</span><span class="hl-0">) </span><span class="hl-9">=&gt;</span><span class="hl-0"> </span><span class="hl-11">each</span><span class="hl-0">(</span><span class="hl-8">source</span><span class="hl-0">, () </span><span class="hl-9">=&gt;</span><span class="hl-0"> </span><span class="hl-11">delay</span><span class="hl-0">(</span><span class="hl-13">100</span><span class="hl-0">))</span><br/><span class="hl-0">  </span><span class="hl-11">sink</span><span class="hl-0">(</span><span class="hl-8">socket</span><span class="hl-0">)</span><br/><span class="hl-0">);</span><br/><br/><span class="hl-8">socket</span><span class="hl-0">.</span><span class="hl-11">addEventListener</span><span class="hl-0">(</span><span class="hl-1">&#39;message&#39;</span><span class="hl-0">, </span><span class="hl-9">function</span><span class="hl-0">(</span><span class="hl-8">evt</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-8">console</span><span class="hl-0">.</span><span class="hl-11">log</span><span class="hl-0">(</span><span class="hl-1">&#39;received: &#39;</span><span class="hl-0"> + </span><span class="hl-8">evt</span><span class="hl-0">.</span><span class="hl-8">data</span><span class="hl-0">);</span><br/><span class="hl-0">});</span>
+</code></pre>
+<p>also exposed at <code>import { sink } from &#39;it-ws&#39;</code></p>
+
+<a href="#import-source-from-39it-wssource39" id="import-source-from-39it-wssource39" style="color: inherit; text-decoration: none;">
+  <h3><code>import source from &#39;it-ws/source&#39;</code></h3>
+</a>
+<p>Create a <code>Source</code> that will read data from the <code>socket</code>.</p>
+<pre><code class="language-js"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">pipe</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-pipe&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> </span><span class="hl-8">source</span><span class="hl-0"> </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;it-ws/source&#39;</span><br/><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">toString</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-1">&#39;uint8arrays/to-string&#39;</span><br/><br/><span class="hl-11">pipe</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-12">// connect to the test/server.js endpoint</span><br/><span class="hl-0">  </span><span class="hl-11">source</span><span class="hl-0">(</span><span class="hl-9">new</span><span class="hl-0"> </span><span class="hl-11">WebSocket</span><span class="hl-0">(</span><span class="hl-1">&#39;ws://localhost:3000/read&#39;</span><span class="hl-0">)),</span><br/><span class="hl-0">  </span><span class="hl-9">async</span><span class="hl-0"> (</span><span class="hl-8">source</span><span class="hl-0">) </span><span class="hl-9">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-7">for</span><span class="hl-0"> </span><span class="hl-7">await</span><span class="hl-0"> (</span><span class="hl-9">const</span><span class="hl-0"> </span><span class="hl-10">buf</span><span class="hl-0"> </span><span class="hl-9">of</span><span class="hl-0"> </span><span class="hl-8">source</span><span class="hl-0">) {</span><br/><span class="hl-0">      </span><span class="hl-8">console</span><span class="hl-0">.</span><span class="hl-11">info</span><span class="hl-0">(</span><span class="hl-11">toString</span><span class="hl-0">(</span><span class="hl-8">buf</span><span class="hl-0">))</span><br/><span class="hl-0">    }</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">);</span><br/>
+</code></pre>
+<p>also exposed at <code>import { source } from &#39;it-ws&#39;</code></p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>Licensed under either of</p>
+<ul>
+<li>Apache 2.0, (<a href="LICENSE-APACHE">LICENSE-APACHE</a> / <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>)</li>
+<li>MIT (<a href="LICENSE-MIT">LICENSE-MIT</a> / <a href="http://opensource.org/licenses/MIT">http://opensource.org/licenses/MIT</a>)</li>
+</ul>
+
+<a href="#contribution" id="contribution" style="color: inherit; text-decoration: none;">
+  <h2>Contribution</h2>
+</a>
+<p>Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.</p>
+</div></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current selected"><a href="modules.html">it-<wbr/>ws -<wbr/> v6.0.0</a>
+<ul>
+<li class="tsd-kind-module"><a href="modules/client.html">client</a></li>
+<li class="tsd-kind-module"><a href="modules/duplex.html">duplex</a></li>
+<li class="tsd-kind-module"><a href="modules/index.html">index</a></li>
+<li class="tsd-kind-module"><a href="modules/server.html">server</a></li>
+<li class="tsd-kind-module"><a href="modules/sink.html">sink</a></li>
+<li class="tsd-kind-module"><a href="modules/source.html">source</a></li></ul></li></ul></div></details></nav></div></div>
+<div class="overlay"></div><script src="assets/main.js"></script></body></html>
