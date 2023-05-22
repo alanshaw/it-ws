@@ -189,7 +189,7 @@
   "devDependencies": {
     "@types/ws": "^8.2.2",
     "aegir": "^38.1.8",
-    "delay": "^5.0.0",
+    "delay": "^6.0.0",
     "it-all": "^3.0.1",
     "it-drain": "^3.0.1",
     "it-foreach": "^2.0.2",
