@@ -184,10 +184,10 @@
     "iso-url": "^1.1.2",
     "it-stream-types": "^2.0.1",
     "uint8arrays": "^4.0.2",
-    "ws": "^8.4.0"
+    "ws": "^8.4.0",
+    "@types/ws": "^8.2.2"
   },
   "devDependencies": {
-    "@types/ws": "^8.2.2",
     "aegir": "^38.1.8",
     "delay": "^5.0.0",
     "it-all": "^3.0.1",
