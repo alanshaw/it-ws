@@ -19,6 +19,12 @@ export default (socket: WebSocket, options: SinkOptions): Sink<Source<Uint8Array
         throw err
       }
 
+      // the ready promise resolved without error but the socket was closing so
+      // exit the loop and don't send data
+      if (socket.readyState === socket.CLOSING || socket.readyState === socket.CLOSED) {
+        break
+      }
+
       socket.send(data)
     }
 
