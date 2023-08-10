@@ -181,7 +181,7 @@
     "docs": "aegir docs"
   },
   "dependencies": {
-    "@types/ws": "^8.2.2"
+    "@types/ws": "^8.2.2",
     "event-iterator": "^2.0.0",
     "iso-url": "^1.1.2",
     "it-stream-types": "^2.0.1",
