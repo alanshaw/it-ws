@@ -1,11 +1,11 @@
 import { expect } from 'aegir/chai'
-import WebSocket from '../src/web-socket.js'
+import delay from 'delay'
 import drain from 'it-drain'
 import { pipe } from 'it-pipe'
-import wsurl from './helpers/wsurl.js'
-import * as WS from '../src/index.js'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
-import delay from 'delay'
+import * as WS from '../src/index.js'
+import WebSocket from '../src/web-socket.js'
+import wsurl from './helpers/wsurl.js'
 
 const endpoint = wsurl + '/echo'
 

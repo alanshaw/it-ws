@@ -1,10 +1,10 @@
 // load websocket library if we are not in the browser
-import WebSocket from './web-socket.js'
 import duplex from './duplex.js'
+import WebSocket from './web-socket.js'
 import wsurl from './ws-url.js'
-import type { ClientOptions } from 'ws'
 import type { DuplexWebSocket } from './duplex.js'
 import type { SinkOptions } from './sink.js'
+import type { ClientOptions } from 'ws'
 
 export interface WebSocketOptions extends SinkOptions {
   websocket?: ClientOptions

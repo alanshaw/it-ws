@@ -1,6 +1,6 @@
-import { pipe } from 'it-pipe'
-import each from 'it-foreach'
 import drain from 'it-drain'
+import each from 'it-foreach'
+import { pipe } from 'it-pipe'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { isNode, isElectronMain } from 'wherearewe'
 import * as WS from '../src/index.js'

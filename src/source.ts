@@ -1,4 +1,3 @@
-
 import { EventIterator } from 'event-iterator'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import type { WebSocket, ErrorEvent, MessageEvent } from 'ws'

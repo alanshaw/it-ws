@@ -1,10 +1,10 @@
-import duplex, { DuplexWebSocket } from './duplex.js'
-import { WebSocketServer as WSServer } from 'ws'
+import { EventEmitter } from 'events'
 import http from 'http'
 import https from 'https'
-import { EventEmitter } from 'events'
-import type { VerifyClientCallbackSync, VerifyClientCallbackAsync, AddressInfo } from 'ws'
+import { WebSocketServer as WSServer } from 'ws'
+import duplex, { type DuplexWebSocket } from './duplex.js'
 import type WebSocket from './web-socket.js'
+import type { VerifyClientCallbackSync, VerifyClientCallbackAsync, AddressInfo } from 'ws'
 
 export interface ServerOptions {
   key?: string
@@ -37,7 +37,7 @@ class Server extends EventEmitter {
   }
 
   async listen (addrInfo: { port: number } | number): Promise<WebSocketServer> {
-    return await new Promise<WebSocketServer>((resolve, reject) => {
+    return new Promise<WebSocketServer>((resolve, reject) => {
       this.wsServer.once('error', (e) => { reject(e) })
       this.wsServer.once('listening', () => { resolve(this) })
       this.server.listen(typeof addrInfo === 'number' ? addrInfo : addrInfo.port)
