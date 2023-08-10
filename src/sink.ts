@@ -1,6 +1,6 @@
 import ready from './ready.js'
-import type { WebSocket } from 'ws'
 import type { Sink, Source } from 'it-stream-types'
+import type { WebSocket } from 'ws'
 
 export interface SinkOptions {
   closeOnEnd?: boolean

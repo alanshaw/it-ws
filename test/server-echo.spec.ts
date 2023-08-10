@@ -1,13 +1,13 @@
 import { expect } from 'aegir/chai'
-import * as WS from '../src/index.js'
-import * as ndjson from 'it-ndjson'
-import { pipe } from 'it-pipe'
-import map from 'it-map'
+import delay from 'delay'
 import all from 'it-all'
 import each from 'it-foreach'
-import delay from 'delay'
+import map from 'it-map'
+import * as ndjson from 'it-ndjson'
+import { pipe } from 'it-pipe'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { isNode, isElectronMain } from 'wherearewe'
+import * as WS from '../src/index.js'
 
 describe('simple echo server', () => {
   if (!(isNode || isElectronMain)) {

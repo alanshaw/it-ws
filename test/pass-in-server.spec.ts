@@ -1,12 +1,12 @@
+import http from 'http'
 import { expect } from 'aegir/chai'
-import * as WS from '../src/index.js'
+import all from 'it-all'
+import map from 'it-map'
 import * as ndjson from 'it-ndjson'
 import { pipe } from 'it-pipe'
-import map from 'it-map'
-import all from 'it-all'
-import http from 'http'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import { isNode, isElectronMain } from 'wherearewe'
+import * as WS from '../src/index.js'
 import type { WebSocketServer } from '../src/server.js'
 
 describe('simple echo server', () => {
@@ -40,7 +40,7 @@ describe('simple echo server', () => {
       [1, 2, 3],
       // need a delay, because otherwise ws hangs up wrong.
       // otherwise use pull-goodbye.
-      (source) => map(source, async val => await new Promise(resolve => setTimeout(() => { resolve(val) }, 10))),
+      (source) => map(source, async val => new Promise(resolve => setTimeout(() => { resolve(val) }, 10))),
       (source) => map(ndjson.stringify(source), str => uint8ArrayFromString(str)),
       stream,
       ndjson.parse,
