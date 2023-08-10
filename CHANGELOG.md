@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/alanshaw/it-ws/compare/v6.0.1...v6.0.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* only send data if the socket is open ([#75](https://github.com/alanshaw/it-ws/issues/75)) ([f63265e](https://github.com/alanshaw/it-ws/commit/f63265e17b8ee979fd2471b9cec0f8e98d0b5fd0))
+
 ## [6.0.1](https://github.com/alanshaw/it-ws/compare/v6.0.0...v6.0.1) (2023-04-18)
 
 

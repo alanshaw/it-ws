@@ -1,12 +1,12 @@
 import { expect } from 'aegir/chai'
-import WebSocket from '../src/web-socket.js'
-import * as WS from '../src/index.js'
-import { pipe } from 'it-pipe'
-import { goodbye } from 'it-goodbye'
-import wsurl from './helpers/wsurl.js'
-import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import drain from 'it-drain'
 import each from 'it-foreach'
+import { goodbye } from 'it-goodbye'
+import { pipe } from 'it-pipe'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as WS from '../src/index.js'
+import WebSocket from '../src/web-socket.js'
+import wsurl from './helpers/wsurl.js'
 
 const endpoint = wsurl + '/echo'
 

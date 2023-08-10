@@ -1,10 +1,10 @@
 import { expect } from 'aegir/chai'
-import WebSocket from '../src/web-socket.js'
+import drain from 'it-drain'
 import { pipe } from 'it-pipe'
+import defer from 'p-defer'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import * as WS from '../src/index.js'
-import drain from 'it-drain'
-import defer from 'p-defer'
+import WebSocket from '../src/web-socket.js'
 
 describe('error', () => {
   // connect to a server that does not exist, and check that it errors.

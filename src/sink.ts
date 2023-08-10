@@ -1,6 +1,6 @@
 import ready from './ready.js'
-import type { WebSocket } from 'ws'
 import type { Sink, Source } from 'it-stream-types'
+import type { WebSocket } from 'ws'
 
 export interface SinkOptions {
   closeOnEnd?: boolean
@@ -17,6 +17,12 @@ export default (socket: WebSocket, options: SinkOptions): Sink<Source<Uint8Array
       } catch (err: any) {
         if (err.message === 'socket closed') break
         throw err
+      }
+
+      // the ready promise resolved without error but the socket was closing so
+      // exit the loop and don't send data
+      if (socket.readyState === socket.CLOSING || socket.readyState === socket.CLOSED) {
+        break
       }
 
       socket.send(data)

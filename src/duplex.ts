@@ -1,7 +1,7 @@
-import source from './source.js'
 import sink from './sink.js'
-import type WebSocket from './web-socket.js'
+import source from './source.js'
 import type { SinkOptions } from './sink.js'
+import type WebSocket from './web-socket.js'
 import type { Duplex, Source } from 'it-stream-types'
 
 export interface DuplexWebSocket extends Duplex<AsyncGenerator<Uint8Array>, Source<Uint8Array>, Promise<void>> {
