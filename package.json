@@ -189,7 +189,7 @@
     "ws": "^8.4.0"
   },
   "devDependencies": {
-    "aegir": "^40.0.0",
+    "aegir": "^41.1.8",
     "delay": "^6.0.0",
     "it-all": "^3.0.1",
     "it-drain": "^3.0.1",
