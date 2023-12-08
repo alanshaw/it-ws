@@ -11,11 +11,12 @@ export interface WebSocketOptions extends SinkOptions {
 }
 
 export function connect (addr: string, opts?: WebSocketOptions): DuplexWebSocket {
-  const location = typeof window === 'undefined' ? '' : window.location
+  const location = typeof window === 'undefined' ? undefined : window.location
   opts = opts ?? {}
 
-  const url = wsurl(addr, location.toString())
-  const socket = new WebSocket(url, opts.websocket)
+  const url = wsurl(addr, location)
 
+  // it's necessary to stringify the URL object otherwise react-native crashes
+  const socket = new WebSocket(url.toString(), opts.websocket)
   return duplex(socket, opts)
 }
