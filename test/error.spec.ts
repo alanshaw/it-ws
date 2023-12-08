@@ -3,9 +3,9 @@ import drain from 'it-drain'
 import { pipe } from 'it-pipe'
 import defer from 'p-defer'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import { isNode } from 'wherearewe'
 import * as WS from '../src/index.js'
 import WebSocket from '../src/web-socket.js'
-import { isNode } from 'wherearewe'
 
 describe('error', () => {
   // connect to a server that does not exist, and check that it errors.
