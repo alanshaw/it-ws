@@ -184,7 +184,7 @@
     "@types/ws": "^8.2.2",
     "event-iterator": "^2.0.0",
     "it-stream-types": "^2.0.1",
-    "uint8arrays": "^4.0.2",
+    "uint8arrays": "^5.0.0",
     "ws": "^8.4.0"
   },
   "devDependencies": {
