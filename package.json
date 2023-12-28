@@ -72,6 +72,11 @@
     "./source": {
       "types": "./dist/src/source.d.ts",
       "import": "./dist/src/source.js"
+    },
+    "./web-socket": {
+      "types": "./dist/src/web-socket.d.ts",
+      "import": "./dist/src/web-socket.js",
+      "browser": "./dist/src/web-socket.browser.js"
     }
   },
   "eslintConfig": {
