@@ -77,7 +77,9 @@ describe('echo', () => {
     await pipe(
       pws,
       goodbye({
-        source: expected,
+        source: (async function * () {
+          yield * expected
+        }()),
         sink: async source => {
           await pipe(
             source,
