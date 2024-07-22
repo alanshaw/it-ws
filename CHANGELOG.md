@@ -1,3 +1,11 @@
+## [6.1.2](https://github.com/alanshaw/it-ws/compare/v6.1.1...v6.1.2) (2024-07-22)
+
+
+### Bug Fixes
+
+* export web-socket ([#99](https://github.com/alanshaw/it-ws/issues/99)) ([9687a51](https://github.com/alanshaw/it-ws/commit/9687a514377724642818227912f264aa53578ee6))
+* it-goodbye expects the source to be an async generator ([#115](https://github.com/alanshaw/it-ws/issues/115)) ([d00509c](https://github.com/alanshaw/it-ws/commit/d00509c616415ae02fe4bf36a172688afbdf9fe7))
+
 ## [6.1.1](https://github.com/alanshaw/it-ws/compare/v6.1.0...v6.1.1) (2023-12-11)
 
 
