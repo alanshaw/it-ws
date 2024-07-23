@@ -10,7 +10,7 @@ function isArrayBuffer (obj: any): obj is ArrayBuffer {
 }
 
 export interface ConnectedSource extends AsyncGenerator<Uint8Array> {
-  connected: () => Promise<void>
+  connected(): Promise<void>
 }
 
 export default (socket: WebSocket): ConnectedSource => {
@@ -33,7 +33,7 @@ export default (socket: WebSocket): ConnectedSource => {
 
       const onOpen = (): void => { cleanUp(resolve) }
       const onError = (event: ErrorEvent): void => {
-        cleanUp(() => { reject(event.error ?? new Error(`connect ECONNREFUSED ${socket.url}`)) })
+        cleanUp(() => { reject(event.error as Error ?? new Error(`connect ECONNREFUSED ${socket.url}`)) })
       }
 
       socket.addEventListener('open', onOpen)

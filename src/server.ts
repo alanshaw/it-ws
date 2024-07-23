@@ -11,13 +11,13 @@ export interface ServerOptions {
   cert?: string
   server?: http.Server | https.Server
   verifyClient?: VerifyClientCallbackAsync | VerifyClientCallbackSync
-  onConnection?: (connection: DuplexWebSocket) => void
+  onConnection?(connection: DuplexWebSocket): void
 }
 
 export interface WebSocketServer extends EventEmitter {
-  listen: (addrInfo: { port: number } | number) => Promise<WebSocketServer>
-  close: () => Promise<void>
-  address: () => string | AddressInfo | null
+  listen(addrInfo: { port: number } | number): Promise<WebSocketServer>
+  close(): Promise<void>
+  address(): string | AddressInfo | null
 }
 
 class Server extends EventEmitter {
