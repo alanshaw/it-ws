@@ -24,7 +24,7 @@ export default async (socket: WebSocket): Promise<void> => {
 
     function handleErr (event: ErrorEvent): void {
       cleanup()
-      reject(event.error ?? new Error(`connect ECONNREFUSED ${socket.url}`))
+      reject(event.error as Error ?? new Error(`connect ECONNREFUSED ${socket.url}`))
     }
 
     socket.addEventListener('open', handleOpen)

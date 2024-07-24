@@ -5,13 +5,13 @@ import type WebSocket from './web-socket.js'
 import type { Duplex, Source } from 'it-stream-types'
 
 export interface DuplexWebSocket extends Duplex<AsyncGenerator<Uint8Array>, Source<Uint8Array>, Promise<void>> {
-  connected: () => Promise<void>
+  connected(): Promise<void>
   localAddress?: string
   localPort?: number
   remoteAddress: string
   remotePort: number
-  close: () => Promise<void>
-  destroy: () => void
+  close(): Promise<void>
+  destroy(): void
   socket: WebSocket
 }
 
