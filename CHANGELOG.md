@@ -1,3 +1,9 @@
+## [6.1.3](https://github.com/alanshaw/it-ws/compare/v6.1.2...v6.1.3) (2024-07-24)
+
+### Dependencies
+
+* **dev:** bump aegir from 40.0.13 to 44.0.1 ([#117](https://github.com/alanshaw/it-ws/issues/117)) ([2fd31de](https://github.com/alanshaw/it-ws/commit/2fd31de1b58a3d97456f3e001c4c95d4a748899e))
+
 ## [6.1.2](https://github.com/alanshaw/it-ws/compare/v6.1.1...v6.1.2) (2024-07-22)
 
 
