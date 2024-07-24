@@ -61,15 +61,25 @@ class Server extends EventEmitter {
   }
 
   onWsServerConnection (socket: WebSocket, req: http.IncomingMessage): void {
-    const addr = this.wsServer.address()
+    let addr: string | AddressInfo
 
-    if (typeof addr === 'string') {
-      this.emit('error', new Error('Cannot listen on unix sockets'))
-      return
-    }
+    try {
+      if (req.socket.remoteAddress == null || req.socket.remotePort == null) {
+        throw new Error('Remote connection did not have address and/or port')
+      }
 
-    if (req.socket.remoteAddress == null || req.socket.remotePort == null) {
-      this.emit('error', new Error('Remote connection did not have address and/or port'))
+      addr = this.wsServer.address()
+
+      if (typeof addr === 'string') {
+        throw new Error('Cannot listen on unix sockets')
+      }
+
+      if (addr == null) {
+        throw new Error('Server was closing or not running')
+      }
+    } catch (err: any) {
+      req.destroy(err)
+      this.emit('error', err)
       return
     }
 
