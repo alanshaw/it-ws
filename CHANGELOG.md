@@ -1,3 +1,9 @@
+## [6.1.4](https://github.com/alanshaw/it-ws/compare/v6.1.3...v6.1.4) (2024-07-29)
+
+### Bug Fixes
+
+* handle null server address ([#118](https://github.com/alanshaw/it-ws/issues/118)) ([bb8e804](https://github.com/alanshaw/it-ws/commit/bb8e804b84ae0a3fd18d51a1edb677eb3be18c4e)), closes [#114](https://github.com/alanshaw/it-ws/issues/114)
+
 ## [6.1.3](https://github.com/alanshaw/it-ws/compare/v6.1.2...v6.1.3) (2024-07-24)
 
 ### Dependencies
