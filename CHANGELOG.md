@@ -1,3 +1,9 @@
+## [6.1.5](https://github.com/alanshaw/it-ws/compare/v6.1.4...v6.1.5) (2024-07-30)
+
+### Bug Fixes
+
+* allow addr to be `null` ([#119](https://github.com/alanshaw/it-ws/issues/119)) ([9881c23](https://github.com/alanshaw/it-ws/commit/9881c231fa8c7ae428fc732064e890b14cf8375f))
+
 ## [6.1.4](https://github.com/alanshaw/it-ws/compare/v6.1.3...v6.1.4) (2024-07-29)
 
 ### Bug Fixes
