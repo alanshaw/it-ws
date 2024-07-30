@@ -61,7 +61,7 @@ class Server extends EventEmitter {
   }
 
   onWsServerConnection (socket: WebSocket, req: http.IncomingMessage): void {
-    let addr: string | AddressInfo
+    let addr: string | AddressInfo | null
 
     try {
       if (req.socket.remoteAddress == null || req.socket.remotePort == null) {
