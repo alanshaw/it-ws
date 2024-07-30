@@ -197,6 +197,7 @@
     "ws": "^8.4.0"
   },
   "devDependencies": {
+    "@types/sinon": "^17.0.3",
     "aegir": "^44.0.1",
     "delay": "^6.0.0",
     "it-all": "^3.0.1",
@@ -207,6 +208,7 @@
     "it-ndjson": "^1.0.0",
     "it-pipe": "^3.0.1",
     "p-defer": "^4.0.0",
+    "sinon": "^18.0.0",
     "wherearewe": "^2.0.1",
     "wsurl": "^1.0.0"
   },

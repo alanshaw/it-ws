@@ -6,12 +6,23 @@ import duplex, { type DuplexWebSocket } from './duplex.js'
 import type WebSocket from './web-socket.js'
 import type { VerifyClientCallbackSync, VerifyClientCallbackAsync, AddressInfo } from 'ws'
 
+export interface ClientWebSocket extends WebSocket {
+  alive?: boolean
+}
+
 export interface ServerOptions {
   key?: string
   cert?: string
   server?: http.Server | https.Server
   verifyClient?: VerifyClientCallbackAsync | VerifyClientCallbackSync
   onConnection?(connection: DuplexWebSocket): void
+
+  /**
+   * If specified, send a PING to every connected client, if
+   * they do not respond with a PONG before the next interval,
+   * terminate the connection
+   */
+  heartbeatMs?: number
 }
 
 export interface WebSocketServer extends EventEmitter {
@@ -23,6 +34,8 @@ export interface WebSocketServer extends EventEmitter {
 class Server extends EventEmitter {
   private readonly server: http.Server | https.Server
   private readonly wsServer: WSServer
+  private readonly heartbeatMs?: number
+  private heartbeatInterval?: ReturnType<typeof setInterval>
 
   constructor (server: http.Server | https.Server, opts?: ServerOptions) {
     super()
@@ -34,9 +47,26 @@ class Server extends EventEmitter {
       verifyClient: opts.verifyClient
     })
     this.wsServer.on('connection', this.onWsServerConnection.bind(this))
+    this.heartbeatMs = opts?.heartbeatMs
   }
 
   async listen (addrInfo: { port: number } | number): Promise<WebSocketServer> {
+    if (this.heartbeatMs != null) {
+      this.heartbeatInterval = setInterval(() => {
+        this.wsServer.clients.forEach((client: ClientWebSocket) => {
+          // the client did not send a pong since the last heartbeat so
+          // terminate the connection
+          if (client.alive === false) {
+            client.terminate()
+            return
+          }
+
+          client.alive = false
+          client.ping()
+        })
+      }, this.heartbeatMs)
+    }
+
     return new Promise<WebSocketServer>((resolve, reject) => {
       this.wsServer.once('error', (e) => { reject(e) })
       this.wsServer.once('listening', () => { resolve(this) })
@@ -45,6 +75,10 @@ class Server extends EventEmitter {
   }
 
   async close (): Promise<void> {
+    if (this.heartbeatInterval != null) {
+      clearInterval(this.heartbeatInterval)
+    }
+
     await new Promise<void>((resolve, reject) => {
       this.server.close((err) => {
         if (err != null) {
@@ -60,7 +94,7 @@ class Server extends EventEmitter {
     return this.server.address()
   }
 
-  onWsServerConnection (socket: WebSocket, req: http.IncomingMessage): void {
+  onWsServerConnection (socket: ClientWebSocket, req: http.IncomingMessage): void {
     let addr: string | AddressInfo | null
 
     try {
@@ -83,6 +117,10 @@ class Server extends EventEmitter {
       return
     }
 
+    socket.on('pong', () => {
+      socket.alive = true
+    })
+
     const stream: DuplexWebSocket = {
       ...duplex(socket, {
         remoteAddress: req.socket.remoteAddress,
@@ -100,7 +138,7 @@ export function createServer (opts?: ServerOptions): WebSocketServer {
   opts = opts ?? {}
 
   const server = opts.server ?? (opts.key != null && opts.cert != null ? https.createServer(opts) : http.createServer())
-  const wss = new Server(server)
+  const wss = new Server(server, opts)
 
   if (opts.onConnection != null) {
     wss.on('connection', opts.onConnection)
