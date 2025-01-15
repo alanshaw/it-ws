@@ -28,7 +28,7 @@ export default (socket: WebSocket, options: SinkOptions): Sink<Source<Uint8Array
       socket.send(data)
     }
 
-    if (options.closeOnEnd != null && socket.readyState <= 1) {
+    if (!!options.closeOnEnd && socket.readyState <= 1) {
       await new Promise<void>((resolve, reject) => {
         socket.addEventListener('close', event => {
           if (event.wasClean || event.code === 1006) {

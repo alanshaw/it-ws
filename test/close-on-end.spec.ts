@@ -6,6 +6,7 @@ import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import * as WS from '../src/index.js'
 import WebSocket from '../src/web-socket.js'
 import wsurl from './helpers/wsurl.js'
+import delay from 'delay'
 
 const endpoint = wsurl + '/echo'
 
@@ -17,6 +18,7 @@ describe('close on end', () => {
       uint8ArrayFromString('y'),
       uint8ArrayFromString('z')
     ]
+    let count = 0
 
     void pipe(
       data,
@@ -25,10 +27,22 @@ describe('close on end', () => {
 
     await pipe(
       WS.source(socket),
+      (source) => each(source, (item) => {
+        expect(item).to.be.ok()
+        count++
+
+        if (count === data.length) {
+          // verify status is closing/closed after draining
+          delay(500).then(() => {
+            expect(socket.readyState).to.be.eq(WebSocket.CLOSED)
+          })
+        }
+      }),
       drain
     )
 
     socket.close()
+    expect(count).to.be.eq(data.length)
   })
 
   it('closeOnEnd=false, stream doesn\'t close', async () => {
@@ -51,11 +65,18 @@ describe('close on end', () => {
         expect(item).to.be.ok()
         count++
 
-        if (count === 3) {
+        if (count === data.length) {
+          // verify status is open after draining
+          expect(socket.readyState).to.be.eq(WebSocket.OPEN)
           socket.close()
+          delay(500).then(() => {
+            expect(socket.readyState).to.be.eq(WebSocket.CLOSED)
+          })
         }
       }),
       drain
     )
+
+    expect(count).to.be.eq(data.length)
   })
 })
